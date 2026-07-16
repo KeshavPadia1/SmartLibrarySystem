@@ -8,7 +8,7 @@ import adafruit_miniqr
 import time
 import espcamera
 import qrio
-import struct  # <--- NEW: For packing display window coordinates
+import struct 
 
 # --- TESTING CONFIG ---
 now_time = time.struct_time((2026, 2, 6, 20, 30, 0, 4, 37, 0))
@@ -85,7 +85,7 @@ def return_book_logic(user_id, isbn):
 
 # --- 3. CAMERA & QR SETUP ---
 print("Initializing Camera...")
-cam = None  # <--- CRITICAL FIX: Define cam as None first!
+cam = None  
 qrdecoder = None
 try:
     cam = espcamera.Camera(
@@ -98,7 +98,7 @@ try:
         frame_size=espcamera.FrameSize.R240X240,
         i2c=board.I2C(),
         external_clock_frequency=20_000_000,
-        framebuffer_count=1  # Reduced to 1 to save RAM/Resources
+        framebuffer_count=1  
     )
     cam.vflip = True
     cam.hmirror = True
@@ -106,7 +106,7 @@ try:
     print("Camera Ready.")
 except Exception as e:
     print("Camera Init Failed:", e)
-    # We do NOT stop here, we continue so the menu still works!
+    
 
 # --- 4. DISPLAY SETUP ---
 display = board.DISPLAY
